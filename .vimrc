@@ -12,8 +12,10 @@ Plugin 'nvie/vim-flake8.git'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'ericcurtin/CurtineIncSw.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
+syntax on
 
 let g:ycm_auto_trigger = 0
 
@@ -22,6 +24,7 @@ set shiftwidth=4
 set expandtab
 set number
 set hlsearch
+set backspace=indent,eol,start
 
 set background=dark
 colorscheme solarized
@@ -47,3 +50,4 @@ set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
 
 nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap <leader>h :call CurtineIncSw()<CR>
