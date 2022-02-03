@@ -11,7 +11,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'ericcurtin/CurtineIncSw.vim'
 Plugin 'jez/vim-ispc'
-Plugin 'lyuts/vim-rtags'
+Plugin 'dense-analysis/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -40,10 +40,6 @@ let g:clang_format#command='clang-format-6.0'
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_format=1
 
-let g:ycm_auto_trigger = 1
-let g:ycm_always_populate_location_list=1
-let g:ycm_auto_hover=''
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
@@ -51,9 +47,14 @@ set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
 
+let g:ycm_auto_trigger = 0
+
 nnoremap <leader>h :call CurtineIncSw()<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>g :YcmC GoTo<CR>
+nnoremap <leader>rw :YcmC RefactorRename
+nnoremap <leader>cn :cn<CR>
+nnoremap <leader>cp :cp<CR>
 
 " cursor shape change in terminal
 let &t_SI = "\<Esc>[6 q"
