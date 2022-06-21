@@ -11,7 +11,6 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'ericcurtin/CurtineIncSw.vim'
 Plugin 'jez/vim-ispc'
-Plugin 'dense-analysis/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -34,7 +33,7 @@ endif
 
 let mapleader = ","
 nnoremap <leader>m :BufExplorer<CR>
-nnoremap <leader>n :Explore<CR>
+nnoremap <leader>n :cn<CR>
 
 let g:clang_format#command='clang-format-6.0'
 let g:clang_format#detect_style_file=1
@@ -63,3 +62,14 @@ let &t_EI = "\<Esc>[2 q"
 
 packadd termdebug
 let g:termdebug_wide=1
+
+function! SearchInclude(p)
+    let current_file = expand('%:t')
+    let search_pattern = printf("#include [\"<].*%s[\">]", current_file)
+    echom(a:p)
+    execute 'vimgrep "' . search_pattern . '"' . a:p . "/**"
+endfunction
+
+command! -nargs=1 -complete=dir SearchInclude call SearchInclude(<f-args>)
+
+nnoremap <leader>i :SearchInclude 
